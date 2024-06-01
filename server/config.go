@@ -8,12 +8,6 @@ type Config struct {
 }
 
 func ParseConfig() (*Config, error) {
-
-	var cfg Config
-
-	if err := env.Parse(&cfg); err != nil {
-		return nil, err
-	}
-
-	return &cfg, nil
+	cfg, err := env.ParseAs[Config]()
+	return &cfg, err
 }

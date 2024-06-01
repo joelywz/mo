@@ -100,9 +100,9 @@ func TestMain(m *testing.M) {
 func TestService(t *testing.T) {
 
 	authService := auth.NewService(&auth.Config{
-		Secret:                 "secret",
-		AccessLifetimeSeconds:  2,
-		RefreshLifetimeSeconds: 4,
+		Secret:          "secret",
+		RefreshDuration: 2 * time.Second,
+		AccessDuration:  4 * time.Second,
 	})
 
 	email := "email@email.com"

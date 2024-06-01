@@ -320,11 +320,11 @@ func (s *Service) createJwt(authUserId string, version string, tokenType TokenTy
 	switch tokenType {
 	case TokenTypeAccess:
 		claims.ExpiresAt = jwt.NewNumericDate(
-			time.Now().Add(time.Second * time.Duration(s.cfg.AccessLifetimeSeconds)),
+			time.Now().Add(s.cfg.AccessDuration),
 		)
 	case TokenTypeRefresh:
 		claims.ExpiresAt = jwt.NewNumericDate(
-			time.Now().Add(time.Second * time.Duration(s.cfg.RefreshLifetimeSeconds)),
+			time.Now().Add(s.cfg.RefreshDuration),
 		)
 	}
 

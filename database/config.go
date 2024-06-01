@@ -13,11 +13,6 @@ type Config struct {
 }
 
 func ParseConfig() (*Config, error) {
-	cfg := new(Config)
-
-	if err := env.Parse(cfg); err != nil {
-		return nil, err
-	}
-
-	return cfg, nil
+	cfg, err := env.ParseAs[Config]()
+	return &cfg, err
 }
