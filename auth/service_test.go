@@ -47,7 +47,9 @@ func TestMain(m *testing.M) {
 		log.Fatalf("Could not start resource: %s", err)
 	}
 
-	resource.Expire(60)
+	if err := resource.Expire(60); err != nil {
+		log.Fatalf("Could not set expiry for resource: %s", err)
+	}
 
 	if err := pool.Retry(func() error {
 		manager, err := database.NewMySQLManager(&database.Config{
